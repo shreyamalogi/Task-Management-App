@@ -2,28 +2,36 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const http = require("http");
+const http = require("http"); //inbuilt module, no need to download
 
+//the app which was created by using express
 const app = express();
 
+//must use EJS
+//for keeping all the templating html code but naming it as .ejs in views folder
+app.set('view engine', 'ejs');
+
+//for keeping the static files in public folder
 app.use(express.static("public"));
+
+//body parser explicit code
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/", function(req, res) {
     var today = new Date();
     var currentDay = today.getDay(); 
 
-    //instead of using multiple routes like for weeday and weekend
-    //we are just gonna implement the if else logic directly in the
-    //home route
+    var day = "";                                   //declaring an empty variable day which holds some value
 
     if(currentDay===6 || currentDay ===0){
-        //rendering weekend.html if ivvala is a holiday
-        res.sendFile(__dirname + "/weekend.html")
+       day = "weekend";                             //initializing it with a value i.e weekend (if the condition is satisfied)
+       //res.render("list", {kindOfDay : day})           //res.render method which has <templatingFilename>, keyValuePair which holds (<variableNameInsideSymbols> : <ourVariableName>) 
     }else{
-        //leda rendering weekday
-       res.sendFile(__dirname + "/weekday.html");
+        day = "weekday";
+        //res.render("list", {kindOfDay : day})          //ila dopuble double rase badlu, logic ipoyaka render cheddam edaithe result ostado dani batti
     }
+    
+    res.render("list", {kindOfDay : day});
     
 });
 
