@@ -21,18 +21,36 @@ app.get("/", function(req, res) {
     var today = new Date();
     var currentDay = today.getDay(); 
 
-    var day = "";                                   //declaring an empty variable day which holds some value
+    var day = "";                                  
+    switch(currentDay){   //expression
+        case 0:
+            day = "Sunday";
+            break;
+        case 1:
+                day = "Monday";
+                break;
+        case 2:
+                day = "Tuesday";
+                break;
+        case 3:
+                 day = "Wednesday";
+                break;
+        case 4:
+                day = "Thursday";
+                break;
+        case 5:
+                day = "Friday";
+                break;
+        case 6:
+                day = "Saturday";
+                break;
 
-    if(currentDay===6 || currentDay ===0){
-       day = "weekend";                             //initializing it with a value i.e weekend (if the condition is satisfied)
-       //res.render("list", {kindOfDay : day})           //res.render method which has <templatingFilename>, keyValuePair which holds (<variableNameInsideSymbols> : <ourVariableName>) 
-    }else{
-        day = "weekday";
-        //res.render("list", {kindOfDay : day})          //ila dopuble double rase badlu, logic ipoyaka render cheddam edaithe result ostado dani batti
+        default:
+        console.log("error");
     }
-    
-    res.render("list", {kindOfDay : day});
-    
+    res.render("list", {
+        kindOfDay : day     //so ivatlati date output la ostadi
+  });
 });
 
 // app.post("/", function(req, res){
