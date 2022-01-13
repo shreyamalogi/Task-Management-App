@@ -12,11 +12,16 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/", function(req, res) {
     var today = new Date();
+    var currentDay = today.getDay(); //head to docs to know how to get aj ka date / day
+
     
-    if(today.getDay()===6 || today.getDay()===0){
+    if(currentDay===6 || currentDay ===0){
         res.send("happy weekend");
     }else{
-        res.send("boo!! not a holiday");
+        //res.send only 1 output pampistadi so res.write use cheyali multiple html outputs kosam then call the res.send method after all the res.writes
+        res.write("<h1> BOO! I have work </h1>");
+        res.write("<p> naku nijangane chala work unadi. So please nanu disturb cheyakandi </p>")
+        res.send();
     }
     
     // res.sendFile(__dirname + "/ .html"); 
