@@ -11,14 +11,18 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/", function(req, res) {
     var today = new Date();
-    var currentDay = today.getDay(); //head to docs to know how to get aj ka date / day
+    var currentDay = today.getDay(); 
 
-    
+    //instead of using multiple routes like for weeday and weekend
+    //we are just gonna implement the if else logic directly in the
+    //home route
+
     if(currentDay===6 || currentDay ===0){
-        res.send("happy weekend");
+        //rendering weekend.html if ivvala is a holiday
+        res.sendFile(__dirname + "/weekend.html")
     }else{
-        //rendering the html template instead of re.write or res.send methods
-       res.sendFile(__dirname + "/index.html");
+        //leda rendering weekday
+       res.sendFile(__dirname + "/weekday.html");
     }
     
 });
