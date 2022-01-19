@@ -18,36 +18,20 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/", function(req, res) {
+
     var today = new Date();
-    var currentDay = today.getDay(); 
 
-    var day = "";                                  
-    switch(currentDay){   //expression
-        case 0:
-            day = "Sunday";
-            break;
-        case 1:
-                day = "Monday";
-                break;
-        case 2:
-                day = "Tuesday";
-                break;
-        case 3:
-                 day = "Wednesday";
-                break;
-        case 4:
-                day = "Thursday";
-                break;
-        case 5:
-                day = "Friday";
-                break;
-        case 6:
-                day = "Saturday";
-                break;
+    //instead of a switch statemenet, we can create a js object ...ref docs
 
-        default:
-        console.log("error");
-    }
+    var options = {
+            day:"numeric",
+            weekday: "long",
+            month:"long"
+    };
+
+    //today.toLocaleDateString("en-us") method for dynamically telling operating system time
+    var day = today.toLocaleDateString("en-us", options);
+    
     res.render("list", {
         kindOfDay : day     //so ivatlati date output la ostadi
   });
