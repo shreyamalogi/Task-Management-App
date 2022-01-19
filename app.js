@@ -22,7 +22,6 @@ app.get("/", function(req, res) {
     var today = new Date();
 
     //instead of a switch statemenet, we can create a js object ...ref docs
-
     var options = {
             day:"numeric",
             weekday: "long",
@@ -32,18 +31,25 @@ app.get("/", function(req, res) {
     //today.toLocaleDateString("en-us") method for dynamically telling operating system time
     var day = today.toLocaleDateString("en-us", options);
     
+    //rendering templates
     res.render("list", {
-        kindOfDay : day     //so ivatlati date output la ostadi
+        kindOfDay : day,
+        newListItem : item,                    //rendering day and newListItem together
   });
 });
 
 
-//passing data from webpage to server
+
 app.post("/", function(req, res){
-      var item =  req.body.newitem;       //tapping unto the input by   req.body.<input_name>method
-        console.log(item);
+//passing data from webpage to server
+      var item =  req.body.newitem;                      //tapping unto the input by   req.body.<input_name>method
+//passing data from server to webpage       
+      res.redirect('/');                              //redirectly to home route
 });
 
 app.listen(3000, function() {
     console.log(`server is listening at http://localhost:3000`);
 });
+
+
+//when we run this we get error on line 37, lets talk abt scope of a variable in next 
