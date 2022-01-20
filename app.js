@@ -7,8 +7,11 @@ const http = require("http"); //inbuilt module, no need to download
 //the app which was created by using express
 const app = express();
 
-//must use EJS
-//for keeping all the templating html code but naming it as .ejs in views folder
+//declaring globally but here the old one gets // over written if we store as var item = " ";
+// so lets create an array which starts of with these 3 instead of li in ejs
+var items = ["buy food", "cook food", "eat food"];
+
+//EJS code like main() for keeping all the templating html code but naming it as .ejs in views folder
 app.set('view engine', 'ejs');
 
 //for keeping the static files in public folder
@@ -17,6 +20,7 @@ app.use(express.static("public"));
 //body parser explicit code to handle inputs in the post req
 app.use(bodyParser.urlencoded({extended:true}));
 
+//get request route
 app.get("/", function(req, res) {
 
     var today = new Date();
@@ -34,22 +38,25 @@ app.get("/", function(req, res) {
     //rendering templates
     res.render("list", {
         kindOfDay : day,
-        newListItem : item,                    //rendering day and newListItem together
+        newListItems : items,                    //rendering day and newListItem together
   });
 });
 
 
-
+//post request route
 app.post("/", function(req, res){
-//passing data from webpage to server
-      var item =  req.body.newitem;                      //tapping unto the input by   req.body.<input_name>method
-//passing data from server to webpage       
-      res.redirect('/');                              //redirectly to home route
+//passing data from webpage to server by tapping unto the input by   req.body.<input_name>method
+      var item =  req.body.newitem;                      
+//appending our array with the new item that we got 
+        items.push(item);
+//passing data from server to webpage by redirecting it to home route
+      res.redirect('/');                              
 });
 
+//seting up port
 app.listen(3000, function() {
     console.log(`server is listening at http://localhost:3000`);
 });
 
 
-//when we run this we get error on line 37, lets talk abt scope of a variable in next 
+

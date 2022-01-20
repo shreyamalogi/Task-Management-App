@@ -12,11 +12,9 @@
     <h1>  <%=  kindOfDay  %>    </h1>
    
     <ul>
-        <li>buy food</li>
-        <li>cook food</li>
-        <li>eat food</li>
-        <!--instead of just consolelogging we need to pass the value so that the info from server appears here-->
-        <li><%= newListItem %></li>
+    <%  for (var i=0; i<newListItems.length; i++){         %>
+            <li> <%= newListItems[i] %> </li>
+    <%  }                                                %>  
     </ul>
 
 <!--pasing data from webpage to server -->
