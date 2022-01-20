@@ -1,16 +1,17 @@
 //jshint esversion:6
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const http = require("http"); //inbuilt module, no need to download
+const express = require("express");             //npm init 
+const bodyParser = require("body-parser");      //npm i express body-parser
+const http = require("http");                   //inbuilt module, no need to download
+const date = require(__dirname + "/date.js");   //not npm but own own local module
 
 //the app which was created by using express
 const app = express();
 
-//declaring globally but here the old one gets // over written if we store as var item = " ";
+//declaring globally but here the old one gets over written if we store as var item = " ";
 // so lets create an array which starts of with these 3 instead of li in ejs
-var items = ["buy food", "cook food", "eat food"];
-var workItems = [];
+const items = ["buy food", "cook food", "eat food"];
+const workItems = [];
 
 //EJS code like main() for keeping all the templating html code but naming it as .ejs in views folder
 app.set('view engine', 'ejs');
@@ -23,23 +24,13 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //get request route
 app.get("/", function(req, res) {
-
-    var today = new Date();
-
-    //instead of a switch statemenet, we can create a js object ...ref docs
-    var options = {
-            day:"numeric",
-            weekday: "long",
-            month:"long"
-    };
-
-    //today.toLocaleDateString("en-us") method for dynamically telling operating system time
-    var day = today.toLocaleDateString("en-us", options);
-    
+//activating our date constant which stores our module getDate, and store this day variable
+//lets call the getDate function which is bound to our date module
+let day = date.getDate();                                   
     //rendering templates
     res.render("list", {
         listTitle : day,
-        newListItems : items,                    //rendering day and newListItem together
+        newListItems : items,                    
   });
 });
 
@@ -47,7 +38,7 @@ app.get("/", function(req, res) {
 //post request route for home
 app.post("/", function(req, res){
 //passing data from webpage to server by tapping unto the input by   req.body.<input_name>method
-var item =  req.body.newitem;  
+const item =  req.body.newitem;  
 //logic: if the request made by user came from /work route push the elemets to it or else push it to home 
         if (req.body.list === "work") {
                 workItems.push(item);
@@ -67,7 +58,7 @@ app.get("/work", function(req,res){
 });
 
 app.post("/work", function(req,res){
-        var items = req.body.newItem;
+        let items = req.body.newItem;
         workItems.push(items);
         res.redirect('/');
 });
