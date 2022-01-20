@@ -10,6 +10,7 @@ const app = express();
 //declaring globally but here the old one gets // over written if we store as var item = " ";
 // so lets create an array which starts of with these 3 instead of li in ejs
 var items = ["buy food", "cook food", "eat food"];
+var workItems = [];
 
 //EJS code like main() for keeping all the templating html code but naming it as .ejs in views folder
 app.set('view engine', 'ejs');
@@ -37,21 +38,41 @@ app.get("/", function(req, res) {
     
     //rendering templates
     res.render("list", {
-        kindOfDay : day,
+        listTitle : day,
         newListItems : items,                    //rendering day and newListItem together
   });
 });
 
 
-//post request route
+//post request route for home
 app.post("/", function(req, res){
 //passing data from webpage to server by tapping unto the input by   req.body.<input_name>method
-      var item =  req.body.newitem;                      
-//appending our array with the new item that we got 
+var item =  req.body.newitem;  
+//logic: if the request made by user came from /work route push the elemets to it or else push it to home 
+        if (req.body.list === "work") {
+                workItems.push(item);
+                res.redirect("/work")
+        } else {
         items.push(item);
-//passing data from server to webpage by redirecting it to home route
-      res.redirect('/');                              
+              res.redirect('/');   
+        }
+                            
 });
+
+
+//get and post for work route
+
+app.get("/work", function(req,res){
+        res.render("list", {listTitle: "work list", newListItems : workItems});
+});
+
+app.post("/work", function(req,res){
+        var items = req.body.newItem;
+        workItems.push(items);
+        res.redirect('/');
+});
+
+
 
 //seting up port
 app.listen(3000, function() {

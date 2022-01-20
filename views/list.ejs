@@ -1,26 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+    <!-- dynamic header (layouts) -->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDoList</title>
-
+    <header><%- include('header'); -%></header>
 </head>
-<body>
 
-    <h1>  <%=  kindOfDay  %>    </h1>
+<body>
+    <div class = "box", id="heading">
+
+        <h1>  <%=  listTitle  %>    </h1>
+
+    </div>
+
+
+    <div class = "box">
+        <%  for (var i=0; i<newListItems.length; i++){          %>
+
+
+            <div class="item">
+            <input type="checkbox">
+            <p><%= newListItems[i] %></p> 
+            </div>
+
+            
+        <%  }                                                   %>  
+
+    </div>
    
-    <ul>
-    <%  for (var i=0; i<newListItems.length; i++){         %>
-            <li> <%= newListItems[i] %> </li>
-    <%  }                                                %>  
-    </ul>
+
+ 
 
 <!--pasing data from webpage to server -->
     <form action="/" method="post">
-    <input type="text" name="newitem" >
-    <button type="submit" name = "button">Add </button>
+    <input type="text" name="newitem" placeholder="new item" autocomplete="off">
+    <button type="submit" name = "list" value= <%= listTitle %> >+</button>       <!--to change the value dynamically as when we press the submit button it does not get added to the first todo list --> 
     </form>
 </body>
+
+
+<!-- dynamic footer with layouts refer ejs.co -->
+<footer>
+    <%- include('footer'); -%>
+</footer>
+
 </html>
