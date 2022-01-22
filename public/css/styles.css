@@ -85,9 +85,8 @@ input[type="text"]:focus {
 }
 
 ::placeholder {
-  background-color: beige;
-  color: #A683E3;
-  opacity: 2;
+  color: grey;
+  opacity: 1;
 }
 
 footer {
