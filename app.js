@@ -39,31 +39,64 @@ const item3 = new modelItem({
 //keeping these docs in an array
 const defaultItems = [item1, item2, item3];
 
-//mongoose insertMany()
-modelItem.insertMany(defaultItems, function(err) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log("success");
-    }
-});
+//first we gonna drop our todolist list db and create it again
+// > show dbs
+// admin       0.000GB
+// config      0.000GB
+// local       0.000GB
+// todolistDb  0.000GB
+// > use todolistDB
+// switched to db todolistDB
+// > show collections
+// > db.dropDatabase()
+// { "ok" : 1 }
+// > show dbs
+// admin       0.000GB
+// config      0.000GB
+// local       0.000GB
+// todolistDb  0.000GB
+// > use todolistDb
+// switched to db todolistDb
+// > db.dropDatabase()
+// { "ok" : 1 }
+// > show dbs
+// admin   0.000GB
+// config  0.000GB
+// local   0.000GB
+// >
+
 
 //GET READ RENDER
 app.get("/", function(req, res) {
     modelItem.find({}, function(err, foundItems) { //READ method inside get {} will find all the items, witha call back function along with conditionbs
-        res.render("list", { listTitle: "Today", newListItems: foundItems }); //instead of just consolelooging we gonna render directly  //console.log(foundItems); //logging the found items
+        if (foundItems.length === 0) { //if there are currently no iytems then insert trhe default items
+            //mongoose insertMany()
+            modelItem.insertMany(defaultItems, function(err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("successfully saved default items to db");
+                }
+            });
+            res.redirect("/"); ///it will go again to the / route under GET but this time it will fall into the lese block at line 82, because now have items in our items collection and we are able to render the founditems 
+        } else {
+            res.render("list", { listTitle: "Today", newListItems: foundItems }); //instead of just consolelooging we gonna render directly  //console.log(foundItems); //logging the found items
+        }
+
     });
 });
 
 
 
-//but everytime we restart our server 42-56 line triggers and data of items goes on adding to our todolist
-//we only want to have 3, lets solve this in our next versions
 
 
 
 
-//post route
+
+
+
+
+//home route with post
 app.post("/", function(req, res) {
 
     const item = req.body.newItem;
@@ -77,10 +110,12 @@ app.post("/", function(req, res) {
     }
 });
 
+//work route with get
 app.get("/work", function(req, res) {
     res.render("list", { listTitle: "Work List", newListItems: workItems });
 });
 
+//about route with get
 app.get("/about", function(req, res) {
     res.render("about");
 });

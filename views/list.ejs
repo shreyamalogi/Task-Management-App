@@ -1,21 +1,32 @@
 <%- include("header") -%>
 
-  <div class="box" id="heading">
-    <h1> <%= listTitle %> </h1>
-  </div>
+    <div class="box" id="heading">
+        <h1>
+            <%= listTitle %>
+        </h1>
+    </div>
 
-  <div class="box">
-    <% for (let i=0; i<newListItems.length; i++) { %>
-      <div class="item">
-        <input type="checkbox">
-        <p><%=  newListItems[i]  %></p>
-      </div>
-      <% } %>
+    <!--box-->
 
-      <form class="item" action="/" method="post">
-        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-        <button type="submit" name="list">+</button>
-      </form>
-  </div>
+    <div class="box">
+        <!-- <!-refactoring the traditional for loop and adding foreach() instead of - <% for (let i=0; i<newListItems.length; i++) { %> -->
+        <%  newListItems.forEach(function(item){ %>
+            <!-- copy paste our div -->
+            <div class="item">
+                <input type="checkbox">
+                <!-- just tap in to to the name field so that the name gets rendered newListItems[i].name, but just tap into ther item.name-->
+                <p>
+                    <%= item.name  %>
+                </p>
+            </div>
+            <% }); %>
 
-<%- include("footer") -%>
+
+                <!-- form -->
+                <form class="item" action="/" method="post">
+                    <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+                    <button type="submit" name="list">+</button>
+                </form>
+    </div>
+
+    <%- include("footer") -%>
