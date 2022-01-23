@@ -3,6 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const date = require(__dirname + "/date.js");
+// const ejsLint = require('ejs-lint');
 
 //requiring our mongoose module for our db
 const mongoose = require("mongoose");
@@ -39,32 +40,6 @@ const item3 = new modelItem({
 //keeping these docs in an array
 const defaultItems = [item1, item2, item3];
 
-//first we gonna drop our todolist list db and create it again
-// > show dbs
-// admin       0.000GB
-// config      0.000GB
-// local       0.000GB
-// todolistDb  0.000GB
-// > use todolistDB
-// switched to db todolistDB
-// > show collections
-// > db.dropDatabase()
-// { "ok" : 1 }
-// > show dbs
-// admin       0.000GB
-// config      0.000GB
-// local       0.000GB
-// todolistDb  0.000GB
-// > use todolistDb
-// switched to db todolistDb
-// > db.dropDatabase()
-// { "ok" : 1 }
-// > show dbs
-// admin   0.000GB
-// config  0.000GB
-// local   0.000GB
-// >
-
 
 //GET READ RENDER
 app.get("/", function(req, res) {
@@ -80,35 +55,38 @@ app.get("/", function(req, res) {
             });
             res.redirect("/"); ///it will go again to the / route under GET but this time it will fall into the lese block at line 82, because now have items in our items collection and we are able to render the founditems 
         } else {
-            res.render("list", { listTitle: "Today", newListItems: foundItems }); //instead of just consolelooging we gonna render directly  //console.log(foundItems); //logging the found items
+            res.render("list", { listTitle: "Today", newListItems: foundItems }); //instead of just consolelogging we gonna render directly  //console.log(foundItems); //logging the found items
         }
 
     });
 });
 
 
-
-
-
-
-
-
-
-
-
 //home route with post
 app.post("/", function(req, res) {
 
-    const item = req.body.newItem;
+    const itemName = req.body.newItem; //which will refer to the input in the forms when we click the + button to add that new item
+    //creating a new item document
+    const item = new Item({
+        name: itemName
+    });
+    items.save(); //it will save all the 79-83 into our items collection and shows in our database
 
-    if (req.body.list === "Work") {
-        workItems.push(item);
-        res.redirect("/work");
-    } else {
-        items.push(item);
-        res.redirect("/");
-    }
+    res.redirect("/"); //after we save it runs app.get aagain, it willrender the item which got logged to apper on our browser
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 //work route with get
 app.get("/work", function(req, res) {
