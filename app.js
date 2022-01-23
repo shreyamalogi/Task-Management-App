@@ -48,69 +48,19 @@ modelItem.insertMany(defaultItems, function(err) {
     }
 });
 
-//get route
+//GET READ RENDER
 app.get("/", function(req, res) {
-    res.render("list", { listTitle: "Today", newListItems: defaultItems }); //it will render all the items (code after db.items.find().pretty()) 
+    modelItem.find({}, function(err, foundItems) { //READ method inside get {} will find all the items, witha call back function along with conditionbs
+        res.render("list", { listTitle: "Today", newListItems: foundItems }); //instead of just consolelooging we gonna render directly  //console.log(foundItems); //logging the found items
+    });
 });
 
-//output in mongoshell will show
-// ---
-// > show dbs
-// admin       0.000GB
-// config      0.000GB
-// local       0.000GB
-// todolistDb  0.000GB
-// > use todolistDb
-// switched to db todolistDb
-// > show collections
-// items
-// > db.items.find().pretty()
-// {
-//         "_id" : ObjectId("61ec26567127ee6980ff072c"),
-//         "name" : "welcome to your todolist.",
-//         "__v" : 0
-// }
-// {
-//         "_id" : ObjectId("61ec26567127ee6980ff072d"),
-//         "name" : "hit the + button top add new item.",
-//         "__v" : 0
-// }
-// {
-//         "_id" : ObjectId("61ec26567127ee6980ff072e"),
-//         "name" : "<-- hit this to delete an item.",
-//         "__v" : 0
-// }
-// {
-//         "_id" : ObjectId("61ec27326b2ddf777b02ad24"),
-//         "name" : "welcome to your todolist.",
-//         "__v" : 0
-// }
-// {
-//         "_id" : ObjectId("61ec27326b2ddf777b02ad25"),
-//         "name" : "hit the + button top add new item.",
-//         "__v" : 0
-// }
-// {
-//         "_id" : ObjectId("61ec27326b2ddf777b02ad26"),
-//         "name" : "<-- hit this to delete an item.",
-//         "__v" : 0
-// }
-// {
-//         "_id" : ObjectId("61ec2bc1cb1dc8b04e89e2b0"),
-//         "name" : "welcome to your todolist.",
-//         "__v" : 0
-// }
-// {
-//         "_id" : ObjectId("61ec2bc1cb1dc8b04e89e2b1"),
-//         "name" : "hit the + button top add new item.",
-//         "__v" : 0
-// }
-// {
-//         "_id" : ObjectId("61ec2bc1cb1dc8b04e89e2b2"),
-//         "name" : "<-- hit this to delete an item.",
-//         "__v" : 0
-// }
-// >
+
+
+//but everytime we restart our server 42-56 line triggers and data of items goes on adding to our todolist
+//we only want to have 3, lets solve this in our next versions
+
+
 
 
 //post route
