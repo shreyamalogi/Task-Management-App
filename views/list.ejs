@@ -6,23 +6,24 @@
         </h1>
     </div>
 
-    <!--box-->
-
     <div class="box">
-        <!-- <!-refactoring the traditional for loop and adding foreach() instead of - <% for (let i=0; i<newListItems.length; i++) { %> -->
-        <%  newListItems.forEach(function(item){ %>
-            <!-- copy paste our div -->
-            <div class="item">
-                <input type="checkbox">
-                <!-- just tap in to to the name field so that the name gets rendered newListItems[i].name, but just tap into ther item.name-->
-                <p>
-                    <%= item.name  %>
-                </p>
+
+        <!-- creating  foreach and wrapping our form inside the div -->
+        <!-- here item is an aray or documents which has id and name -->
+        <% newListItems.forEach(function(item) { %>
+            <!-- this route is responsible for deleting new items -->
+            <form action="/delete" method="post">
+                <div class="item">
+                    <!-- to get the checkbox submit when we trigger it, onchange=checked to unchecked and viceversa -->
+                    <input type="checkbox" name="checkbox" value="<%=item._id %>" onchange="this.form.submit()">
+                    <p>
+                        <%=  item.name %>
+                    </p>
+            </form>
             </div>
-            <% }); %>
+            <% }) %>
 
-
-                <!-- form -->
+                <!-- this route is responsible for adding new items -->
                 <form class="item" action="/" method="post">
                     <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
                     <button type="submit" name="list">+</button>

@@ -67,14 +67,31 @@ app.post("/", function(req, res) {
 
     const itemName = req.body.newItem; //which will refer to the input in the forms when we click the + button to add that new item
     //creating a new item document
-    const item = new Item({
+    const item = new modelItem({
         name: itemName
     });
-    items.save(); //it will save all the 79-83 into our items collection and shows in our database
+    item.save(); //it will save all the 79-83 into our items collection and shows in our database
 
     res.redirect("/"); //after we save it runs app.get aagain, it willrender the item which got logged to apper on our browser
 
 });
+
+//home route which deletes with post
+app.post("/delete", function(req, res) {
+    //and the id of the element which was checked i.e 61ed27ad42f8dba1f9d2aead
+    const checkedItemId = (req.body.checkbox);
+    //mongoose find by id and remove
+    modelItem.findByIdAndRemove(checkedItemId, function(err) {
+        if (!err) {
+            console.log("we have succesfully deleted checkeditem");
+            res.redirect("/"); //to reflect that on our webpage
+        }
+    })
+});
+
+
+
+
 
 
 
