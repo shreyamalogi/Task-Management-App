@@ -1,18 +1,21 @@
 {
-  "name": "todolist-v1",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.1",
-    "ejs": "^2.7.4",
-    "express": "^4.17.2",
-    "lodash": "^4.17.21",
-    "mongoose": "^6.1.7"
-  }
+    "name": "todolist-v1",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "engines": {
+        "node": "16.13.2"
+    },
+    "dependencies": {
+        "body-parser": "^1.19.1",
+        "ejs": "^2.7.4",
+        "express": "^4.17.2",
+        "lodash": "^4.17.21",
+        "mongoose": "^6.1.7"
+    }
 }
