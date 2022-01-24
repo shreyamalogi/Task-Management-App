@@ -20,8 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //keeping static files in public
 app.use(express.static("public"));
 
-//mongodb connection, to avoid deprecation warning
-mongoose.connect("mongodb://localhost:27017/todolistDb", { useNewUrlParser: true });
+//mongodb connection on aws cloud
+mongoose.connect("mongodb+srv://admin-shreya:test123@cluster0.tmyb7.mongodb.net/todolistDb", { useNewUrlParser: true });
 
 //mongoose schema for items
 const itemsSchema = ({
@@ -164,133 +164,6 @@ app.post("/delete", function(req, res) {
 });
 
 
-//in db we get
-// > show dbs
-// admin       0.000GB
-// config      0.000GB
-// local       0.000GB
-// todolistDb  0.000GB
-// > use todolistDb
-// switched to db todolistDb
-// > show collections
-// items
-// lists
-// > db.lists.find().pretty()
-// {
-//         "_id" : ObjectId("61ed405cc0bb0f5179d7c800"),
-//         "name" : "home",
-//         "items" : [
-//                 {
-//                         "name" : "welcome to your todolist.",
-//                         "_id" : ObjectId("61ed4037c0bb0f5179d7c7fc")
-//                 },
-//                 {
-//                         "name" : "hit the + button top add new item.",
-//                         "_id" : ObjectId("61ed4037c0bb0f5179d7c7fd")
-//                 },
-//                 {
-//                         "name" : "<-- hit this to delete an item.",
-//                         "_id" : ObjectId("61ed4037c0bb0f5179d7c7fe")
-//                 },
-//                 {
-//                         "name" : "jkykj",
-//                         "_id" : ObjectId("61ed40d5c0bb0f5179d7c89e")
-//                 }
-//         ],
-//         "__v" : 3
-// }
-// {
-//         "_id" : ObjectId("61ed4095c0bb0f5179d7c837"),
-//         "name" : "work",
-//         "items" : [
-//                 {
-//                         "name" : "welcome to your todolist.",
-//                         "_id" : ObjectId("61ed4037c0bb0f5179d7c7fc")
-//                 },
-//                 {
-//                         "name" : "hit the + button top add new item.",
-//                         "_id" : ObjectId("61ed4037c0bb0f5179d7c7fd")
-//                 },
-//                 {
-//                         "name" : "<-- hit this to delete an item.",
-//                         "_id" : ObjectId("61ed4037c0bb0f5179d7c7fe")
-//                 },
-//                 {
-//                         "name" : "lll",
-//                         "_id" : ObjectId("61ed40c9c0bb0f5179d7c88e")
-//                 }
-//         ],
-//         "__v" : 4
-// }
-// {
-//         "_id" : ObjectId("61ed4095c0bb0f5179d7c83d"),
-//         "name" : "work",
-//         "items" : [
-//                 {
-//                         "name" : "welcome to your todolist.",
-//                         "_id" : ObjectId("61ed4037c0bb0f5179d7c7fc")
-//                 },
-//                 {
-//                         "name" : "hit the + button top add new item.",
-//                         "_id" : ObjectId("61ed4037c0bb0f5179d7c7fd")
-//                 },
-//                 {
-//                         "name" : "<-- hit this to delete an item.",
-//                         "_id" : ObjectId("61ed4037c0bb0f5179d7c7fe")
-//                 }
-//         ],
-//         "__v" : 0
-// }
-// {
-//         "_id" : ObjectId("61ed46643d23b2269c99ceea"),
-//         "name" : "Work",
-//         "items" : [
-//                 {
-//                         "name" : "welcome to your todolist.",
-//                         "_id" : ObjectId("61ed465b3d23b2269c99cee5")
-//                 },
-//                 {
-//                         "name" : "hit the + button top add new item.",
-//                         "_id" : ObjectId("61ed465b3d23b2269c99cee6")
-//                 },
-//                 {
-//                         "name" : "<-- hit this to delete an item.",
-//                         "_id" : ObjectId("61ed465b3d23b2269c99cee7")
-//                 }
-//         ],
-//         "__v" : 0
-// }
-// {
-//         "_id" : ObjectId("61ed47383d23b2269c99cef4"),
-//         "name" : "About",
-//         "items" : [
-//                 {
-//                         "name" : "welcome to your todolist.",
-//                         "_id" : ObjectId("61ed465b3d23b2269c99cee5")
-//                 },
-//                 {
-//                         "name" : "hit the + button top add new item.",
-//                         "_id" : ObjectId("61ed465b3d23b2269c99cee6")
-//                 },
-//                 {
-//                         "name" : "<-- hit this to delete an item.",
-//                         "_id" : ObjectId("61ed465b3d23b2269c99cee7")
-//                 }
-//         ],
-//         "__v" : 0
-// }
-// > db.lists.drop()
-// true
-// >
-
-
-
-
-
-
-
-
-
 
 //about route with get
 app.get("/about", function(req, res) {
@@ -300,3 +173,71 @@ app.get("/about", function(req, res) {
 app.listen(3000, function() {
     console.log("Server started on port 3000");
 });
+
+
+
+
+
+
+
+
+// in aws cluster of mongo atlas we set it up and try commands from our mongo shell we get
+
+
+
+
+
+// Microsoft Windows [Version 10.0.18363.1556]
+// (c) 2019 Microsoft Corporation. All rights reserved.
+
+// C:\Windows\SysWOW64>mongo  --version
+// MongoDB shell version v5.0.5
+// Build Info: {
+//     "version": "5.0.5",
+//     "gitVersion": "d65fd89df3fc039b5c55933c0f71d647a54510ae",
+//     "modules": [],
+//     "allocator": "tcmalloc",
+//     "environment": {
+//         "distmod": "windows",
+//         "distarch": "x86_64",
+//         "target_arch": "x86_64"
+//     }
+// }
+
+// C:\Windows\SysWOW64>mongo "mongodb+srv://cluster0.tmyb7.mongodb.net/myFirstDatabase" --username admin-shreya
+// MongoDB shell version v5.0.5
+// Enter password:
+// connecting to: mongodb://cluster0-shard-00-00.tmyb7.mongodb.net:27017,cluster0-shard-00-01.tmyb7.mongodb.net:27017,cluster0-shard-00-02.tmyb7.mongodb.net:27017/myFirstDatabase?authSource=admin&compressors=disabled&gssapiServiceName=mongodb&replicaSet=atlas-7dll6j-shard-0&ssl=true
+
+
+// *** You have failed to connect to a MongoDB Atlas cluster. Please ensure that your IP allowlist allows connections from your network.
+// Error: can't connect to new replica set primary [cluster0-shard-00-02.tmyb7.mongodb.net:27017], err: Location8000: bad auth : Authentication failed. :
+// connect@src/mongo/shell/mongo.js:372:17
+// @(connect):2:6
+// exception: connect failed
+// exiting with code 1
+
+// C:\Windows\SysWOW64>mongo "mongodb+srv://cluster0.tmyb7.mongodb.net/myFirstDatabase" --username admin-shreya
+// MongoDB shell version v5.0.5
+// Enter password:
+// connecting to: mongodb://cluster0-shard-00-00.tmyb7.mongodb.net:27017,cluster0-shard-00-01.tmyb7.mongodb.net:27017,cluster0-shard-00-02.tmyb7.mongodb.net:27017/myFirstDatabase?authSource=admin&compressors=disabled&gssapiServiceName=mongodb&replicaSet=atlas-7dll6j-shard-0&ssl=true
+// Implicit session: session { "id" : UUID("737eb7ba-f198-450d-b466-d5e2bd4c9f7f") }
+// MongoDB server version: 4.4.11
+// WARNING: shell and server versions do not match
+// ================
+// Warning: the "mongo" shell has been superseded by "mongosh",
+// which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+// an upcoming release.
+// For installation instructions, see
+// https://docs.mongodb.com/mongodb-shell/install/
+// ================
+// Welcome to the MongoDB shell.
+// For interactive help, type "help".
+// For more comprehensive documentation, see
+//         https://docs.mongodb.com/
+// Questions? Try the MongoDB Developer Community Forums
+//         https://community.mongodb.com
+// MongoDB Enterprise atlas-7dll6j-shard-0:PRIMARY> show dbs
+// admin  0.000GB
+// local  9.733GB
+// MongoDB Enterprise atlas-7dll6j-shard-0:PRIMARY>
