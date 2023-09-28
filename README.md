@@ -1,5 +1,7 @@
 🚀📅📝 **Task Management App: ToDo List App** 📝📅🚀
 
+[todo](https://raw.githubusercontent.com/shreyamalogi/Task-Management-App/main/resources/todoodiii.gif)
+
 :trophy: **14 Stars!** :star::star::star::star::star::star::star::star::star::star::star::star::star::star:
 
 
@@ -12,7 +14,7 @@ In the midst of busy modern life, developer Shreya took on the challenge of simp
 **Demo** 📺
 Check out the live demo of the ToDo List App: [Live Demo](https://polar-castle-59133.herokuapp.com/) 🌐👀
 
-**Todolist overview:** [Click Here](https://polar-castle-59133.herokuapp.com/about) 📄👓
+**Todolist overview:** [Click Here](https://github.com/shreyamalogi/Task-Management-App/blob/main/resources/todolist%20overview.pdf) 📄👓
 
 **Table of Contents** 📚
 - Technical Stack
