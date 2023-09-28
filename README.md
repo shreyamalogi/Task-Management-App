@@ -1,22 +1,20 @@
-🚀📅📝 **Task Management App: ToDo List App** 📝📅🚀
+# 🚀📅📝 **Task Management App: ToDo List App** 📝📅🚀
 
-[todo](https://raw.githubusercontent.com/shreyamalogi/Task-Management-App/main/resources/todoodiii.gif)
+![todo](https://github.com/shreyamalogi/Task-Management-App/blob/main/resources/todoodiii.gif)
 
 :trophy: **14 Stars!** :star::star::star::star::star::star::star::star::star::star::star::star::star::star:
 
 
 
-**Why?** 🤔
-In the midst of busy modern life, developer Shreya took on the challenge of simplifying daily routines. Recognizing the chaos of managing tasks and deadlines, she set out to create the ToDo List App—a user-friendly tool for efficient task management. The app, hosted on Heroku with secure data storage on AWS-based MongoDB Atlas, empowers users to stay organized and productive. Today, it stands as a symbol of her commitment to simplifying lives, one task at a time. 💪🌟
+- ## **Why?** 🤔
+In the midst of busy modern life, developer Shreya took on the challenge of simplifying daily routines. Recognizing the chaos of managing tasks , she set out to create the ToDo List App—a user-friendly tool for efficient task management. The app, hosted on Heroku with secure data storage on AWS-based MongoDB Atlas, empowers users to stay organized and productive. Today, it stands as a symbol of her commitment to simplifying lives, one task at a time. 💪🌟 It was created with the goal of providing a simple yet effective tool for managing daily tasks. As a user, you can easily create and delete tasks to stay organized and productive. The app's responsive design ensures that you can access your tasks from any device, whether it's your computer, tablet, or smartphone. 📱💼🌟
 
-**This ToDo List App** was created with the goal of providing a simple yet effective tool for managing daily tasks. As a user, you can easily create, edit, and delete tasks to stay organized and productive. The app's responsive design ensures that you can access your tasks from any device, whether it's your computer, tablet, or smartphone. 📱💼🌟
-
-**Demo** 📺
+- ## **Demo** 📺
 Check out the live demo of the ToDo List App: [Live Demo](https://polar-castle-59133.herokuapp.com/) 🌐👀
 
-**Todolist overview:** [Click Here](https://github.com/shreyamalogi/Task-Management-App/blob/main/resources/todolist%20overview.pdf) 📄👓
+- ## **Todolist overview:** [Click Here](https://github.com/shreyamalogi/Task-Management-App/blob/main/resources/todolist%20overview.pdf) 📄👓
 
-**Table of Contents** 📚
+# Table of Contents 📚
 - Technical Stack
 - Getting Started
 - Features
@@ -59,7 +57,7 @@ Check out the live demo of the ToDo List App: [Live Demo](https://polar-castle-5
 
 **3. Handling User Input**
 
-  - Challenge: Managing user input and interactions, such as adding, editing, and deleting tasks, can be intricate.
+  - Challenge: Managing user input and interactions, such as adding and deleting tasks, can be intricate.
   
   - Solution: Implement robust form handling and validation in your app. Use Express.js to process user input securely. Handle database updates and deletions carefully to avoid data corruption. 📝👨‍💻🔧
 
@@ -70,7 +68,7 @@ To run this application locally or contribute to its development, follow these s
 1. **Clone the Repository**:
 
    ```
-   git clone https://github.com/yourusername/todolist-app.git
+   git clone https://github.com/shreyamalogi/todolist-app.git
    cd todolist-app
    ```
 
@@ -80,22 +78,41 @@ To run this application locally or contribute to its development, follow these s
    npm install
    ```
 
-3. **Set Environment Variables**:
 
-   Create a `.env` file in the project root and add the following environment variables:
-
-   ```
-   PORT=3000
-   MONGODB_URI=your-mongodb-connection-string
-   ```
-
-4. **Run the App**:
+3. **Run the App**:
 
    ```
-   npm start
+   node app.js
    ```
 
    The app should now be running locally at `http://localhost:3000`. 🏃💨
+
+4. **Mongodb setup**
+
+   To start MongoDB server and connect to it using MongoDB Compass, follow these steps:
+
+1. **Install MongoDB:** If you haven't already installed MongoDB, you can download it from the official MongoDB website (https://www.mongodb.com/try/download/community). Follow the installation instructions for your operating system.
+
+2. **Start MongoDB Server:**
+   - On most systems, you can start the MongoDB server by running the `mongod` command in your terminal or command prompt.
+   - If MongoDB is installed correctly, this command will start the server. It will listen on the default port 27017 by default. You can specify a different port using the `--port` option if needed.
+
+   ```
+   mongod
+   ```
+
+3. **Open MongoDB Compass:**
+   - MongoDB Compass is a graphical user interface (GUI) tool for MongoDB. You can download it from the MongoDB website (https://www.mongodb.com/try/download/compass).
+
+4. **Connect to MongoDB Server:**
+   - Launch MongoDB Compass after installation.
+   - On the initial screen, click the "Connect" button.
+
+5. **Configure Connection:**
+   - In the "Connect to Host" dialog box, you'll need to configure your connection settings.
+   - By default, Compass will try to connect to `localhost` on port `27017`.
+   - If your MongoDB server is running on the default settings, you can simply click the "Connect" button. Compass will connect to the server.
+
 
 ### Features 🌟
 
@@ -103,7 +120,7 @@ To run this application locally or contribute to its development, follow these s
 
 2. **Mark Tasks as Completed**: Users can mark tasks as completed to track their progress. ✅
 
-3. **Edit or Delete Existing Tasks**: Users can edit the details of existing tasks or delete tasks they no longer need. ✏️🗑️
+3. ** Delete Existing Tasks**: Users can delete tasks they no longer need. ✏️🗑️
 
 4. **User-Friendly and Intuitive Interface**: The app aims to provide a user-friendly and intuitive interface for a smooth task management experience. 🤗👌
 
@@ -111,7 +128,7 @@ To run this application locally or contribute to its development, follow these s
 
 6. **Hosted on Heroku with AWS-Based Database Storage**: The app is hosted on Heroku, providing online access to users. The database is hosted on AWS through MongoDB Atlas, ensuring reliable and scalable data storage. 🌐☁️
 
-These features collectively make your ToDo List App a useful tool for task management and organization. Users can efficiently create, update, and track their tasks with the app's intuitive interface, and the data is securely stored in the cloud for accessibility from anywhere. 📝📈🌍
+These features collectively make your ToDo List App a useful tool for task management and organization. Users can efficiently create, delete, and track their tasks with the app's intuitive interface, and the data is securely stored in the cloud for accessibility from anywhere. 📝📈🌍
 
 
 
